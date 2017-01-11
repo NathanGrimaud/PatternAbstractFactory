@@ -7,12 +7,4 @@ import javafx.collections.ObservableList;
 public enum ButtonType {
     Noir,
     Bleu;
-
-    public static ObservableList toObservable() {
-        ObservableList obs = FXCollections.observableArrayList();
-        for (ButtonType type: ButtonType.values()){
-            obs.add(type);
-        }
-        return obs;
-    }
 }

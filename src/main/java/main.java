@@ -5,6 +5,8 @@
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -24,14 +26,11 @@ public class main extends Application {
     public void start(Stage primaryStage) {
 
         Scene scene = new Scene(group, 1024, 576);
-
         this.choice = createChoiceBox();
         this.choice.setLayoutY(100);
         group.getChildren().add(choice);
-
         this.button = getDefaultTheme().getButton();
         group.getChildren().add(button);
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -42,16 +41,17 @@ public class main extends Application {
         return new BlackTheme();
     }
     public ChoiceBox createChoiceBox(){
-        final ChoiceBox choice = new ChoiceBox(ButtonType.toObservable());
+        ObservableList<IButtonFactory> obs = FXCollections.observableArrayList(
+                new BlackButton(),
+                new BlueButton()
+        );
+        final ChoiceBox choice = new ChoiceBox(obs);
         choice.setOnAction(new EventHandler<ActionEvent>() {
+
             public void handle(ActionEvent event) {
                 group.getChildren().remove(button);
-                ButtonType type = ButtonType.valueOf(choice.getValue().toString());
-                System.out.println(type == ButtonType.Bleu);
-                if(type == ButtonType.Bleu)
-                    button = new BlueTheme().getButton();
-                else if (type == ButtonType.Noir)
-                    button = new BlackTheme().getButton();
+                IButtonFactory selectedButton = (IButtonFactory) choice.getValue();
+                button = selectedButton.createButton();
                 group.getChildren().add(button);
             }
         });

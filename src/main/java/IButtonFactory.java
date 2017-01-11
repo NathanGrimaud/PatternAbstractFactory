@@ -4,4 +4,5 @@
 import javafx.scene.control.*;
  public interface IButtonFactory {
     Button createButton();
-}
+    String toString();
+ }

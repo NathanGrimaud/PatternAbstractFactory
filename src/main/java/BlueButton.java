@@ -15,4 +15,7 @@ public class BlueButton extends Button implements IButtonFactory {
                 Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         return btn;
     }
+    public String toString(){
+        return "Blue";
+    }
 }

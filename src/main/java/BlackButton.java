@@ -17,4 +17,7 @@ public class BlackButton implements IButtonFactory {
                 Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         return btn;
     }
+    public String toString(){
+        return "Black";
+    }
 }
