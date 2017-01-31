@@ -30,28 +30,33 @@ public class main extends Application {
         this.choice.setLayoutY(100);
         group.getChildren().add(choice);
         this.button = getDefaultTheme().getButton();
+
         group.getChildren().add(button);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     public static void main(String[] args) {
+
+        Singleton sing = Singleton.getInstance();
+        System.out.println(sing == Singleton.getInstance());
+
         launch(args);
     }
     public IThemeFactory getDefaultTheme(){
-        return new BlackTheme();
+        return new BlueTheme();
     }
     public ChoiceBox createChoiceBox(){
-        ObservableList<IButtonFactory> obs = FXCollections.observableArrayList(
-                new BlackButton(),
-                new BlueButton()
+        ObservableList<IThemeFactory> obs = FXCollections.observableArrayList(
+                new BlackTheme(),
+                new BlueTheme()
         );
         final ChoiceBox choice = new ChoiceBox(obs);
         choice.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
                 group.getChildren().remove(button);
-                IButtonFactory selectedButton = (IButtonFactory) choice.getValue();
-                button = selectedButton.createButton();
+                IThemeFactory selectedTheme = (IThemeFactory) choice.getValue();
+                button = selectedTheme.getButton();
                 group.getChildren().add(button);
             }
         });

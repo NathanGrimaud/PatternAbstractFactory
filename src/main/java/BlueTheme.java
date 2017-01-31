@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
  */
 public class BlueTheme implements IThemeFactory  {
     public Button getButton() {
-        return new BlueButton().createButton();
+        return new UpperCasedButton(new BlueButton()).createButton();
+    }
+    public String toString(){
+        return "Blue Theme";
     }
 }

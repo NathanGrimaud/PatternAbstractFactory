@@ -11,13 +11,17 @@ import javafx.scene.paint.Color;
 
 
 public class BlackButton implements IButtonFactory {
+    private String name = "Black";
     public Button createButton() {
+
         Button btn = new Button();
         btn.setBackground(new Background(new BackgroundFill(
                 Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        btn.setTextFill(Color.web("#F5F5F5"));
+        btn.setText(name);
         return btn;
     }
     public String toString(){
-        return "Black";
+        return name;
     }
 }

@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 public class BlackTheme  implements IThemeFactory  {
 
     public Button getButton() {
-        return new BlackButton().createButton();
+        return new RedBorderButton(new AlertButton(new BlackButton())).createButton();
+    }
+    public String toString(){
+        return "Black theme";
     }
 }
